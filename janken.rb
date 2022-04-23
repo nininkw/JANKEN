@@ -1,4 +1,5 @@
 def janken
+  puts "じゃんけん…"
   puts"0(グー) 1(チョキ) 2(パー) 3(戦わない)"
 
   player_hand = gets.to_i
@@ -6,7 +7,7 @@ def janken
 
   if player_hand == 3
     puts "対戦を終わります"
-    break
+    exit
   end
 
   jankens = ["グー","チョキ","パー"]
@@ -22,22 +23,16 @@ def janken
   elsif (player_hand == 0 && computer_hand == 1)||
         (player_hand == 1 && computer_hand == 2)||
         (player_hand == 2 && computer_hand == 0)
-    puts "じゃん勝ち"
+    puts "じゃんけんに勝ちました"
     return false, "win"
   else
-    puts "じゃん負け"
+    puts "じゃんけんに負けました"
     return false, "lose"
   end
 end
 
 next_game = true
 result = ""
-
-puts "じゃんけん…"
-
-while next_game do
-  next_game, result = janken
-end
 
 def attimuite_hoi(result)
   puts "あっち向いて〜"
@@ -55,13 +50,20 @@ def attimuite_hoi(result)
 
   if (result == "win" && player_face == computer_face)
     puts "完全勝利"
-    janken
+    return true
   elsif  (result == "lose" && player_face == computer_face)
     puts "完敗です"
-    janken
+    return true
   else
-    janken
+    return true
   end
 end
 
-attimuite_hoi(result)
+while next_game do
+  next_game, result = janken
+  if next_game == false
+    next_game = attimuite_hoi(result)
+  end
+end
+
+
