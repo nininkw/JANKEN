@@ -50,10 +50,10 @@ def attimuite_hoi(result)
 
   if (result == "win" && player_face == computer_face)
     puts "完全勝利"
-    return true
+    exit
   elsif  (result == "lose" && player_face == computer_face)
     puts "完敗です"
-    return true
+    exit
   else
     return true
   end
